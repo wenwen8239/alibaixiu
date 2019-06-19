@@ -100,5 +100,23 @@ router.get('/deleteMultiple',(req,res) => {
 router.post('/getPostByPage',(req,res) => {
     postsController.getPostByPage(req,res);
 })
+// 获取所有分类
+router.get('/getAllCategory',(req,res) => {
+    categoriesController.getAllCategory(req,res);
+})
+// 通过条件筛选分类数据
+router.post('/getPostByFilter',(req,res) => {
+    postsController.getPostByFilter(req,res);
+})
+
+// 用户上传图片的接口
+router.post('/uploadImage',(req,res) => {
+    postsController.uploadImage(req,res);
+})
+// 新增文章数据
+router.post('/addNewPosts',(req,res) => {
+    postsController.addNewPosts(req,res);
+})
+
 // 暴露路由对象
 module.exports = router;

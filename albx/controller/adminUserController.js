@@ -43,8 +43,6 @@ module.exports = {
                 code : 200,
                 msg : '获取失败'
             })
-        }
-        
-        
+        }  
     }
 }

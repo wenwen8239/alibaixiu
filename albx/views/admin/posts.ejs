@@ -17,16 +17,17 @@
         <!-- show when multiple checked -->
         <a class="btn btn-danger btn-sm" href="javascript:;" style="display: none">批量删除</a>
         <form class="form-inline">
-          <select name="" class="form-control input-sm">
-            <option value="">所有分类</option>
+          <select name="" id="category" class="form-control input-sm">
+            <option value="all">所有分类</option>
             <option value="">未分类</option>
           </select>
-          <select name="" class="form-control input-sm">
-            <option value="">所有状态</option>
-            <option value="">草稿</option>
-            <option value="">已发布</option>
+          <select name="" id="status" class="form-control input-sm">
+            <option value="all">所有状态</option>
+            <option value="drafted">草稿</option>
+            <option value="published">已发布</option>
+            <option value="trashed">已作废</option>
           </select>
-          <button class="btn btn-default btn-sm">筛选</button>
+          <input type="button" id="btn-filter" class="btn btn-default btn-sm" value="筛选">
         </form>
         <ul class="pagination pagination-sm pull-right">
           <li class="page-item"><a class="page-link" href="javascript:void(0);">上一页</a></li>

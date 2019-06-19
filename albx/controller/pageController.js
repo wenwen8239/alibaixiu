@@ -4,8 +4,7 @@ const adminUserModel = require('../model/adminUserModel');
 const categoriesModel = require('../model/categoriesModel');
 // 引入postsMldel模块
 const postsModel = require('../model/adminPostModel');
-// 引入格式化日期模块
-const moment = require('moment');
+
 module.exports = {
     // 创建展示前台index页面方法
     getIndex(req,res) {
@@ -49,7 +48,12 @@ module.exports = {
     },
     // 创建展示后台写文章页面
     getAdminPostAdd(req,res) {
-        res.render('admin/post-add');
+        if (req.session.isLogin) {
+            res.render('admin/post-add');
+        }
+        else {
+            res.send('<script>location.href="/admin/login";</script>');
+        }
     },
     // 创建展示后台所有文章页面
     getAdminPosts(req,res) {
@@ -57,9 +61,9 @@ module.exports = {
            // 读取数据，导入模板
             postsModel.getAllPosts((err,result) => {
                 if (err) console.error(err);
-                result.forEach(e => {
+                /* result.forEach(e => {
                     e.created = moment(e.created).format('YYYY-MM-DD HH:mm:ss');
-                });
+                }); */
                 res.render('admin/posts',{arr:result});
             })     
         } 

@@ -109,6 +109,24 @@ module.exports = {
             }
             res.send(resObj);
         })
+    },
+    // 获取所有分类数据
+    getAllCategory(req,res) {
+        // 通过数据库获取数据
+        categrotyModel.getAllCategories((err,result) => {
+            if (err) console.error(err);
+            let resObj = {};
+            if (result.length != 0 ) {
+                resObj.code = 200;
+                resObj.msg = '获取成功';
+                resObj.data = result;
+            }
+            else {
+                resObj.code = 200;
+                resObj.msg = '获取失败';
+            }
+            res.send(resObj);
+        })
     }
 
 }
