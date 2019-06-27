@@ -58,7 +58,6 @@ module.exports = {
         }
         sql += condition;
         sql += ` LIMIT ${offset},${pageSize}`;
-
         adminPostsModel.getPostByFilter(sql,(err,result) => {
             if (err) console.error(err);
             let resObj = {};
@@ -134,6 +133,75 @@ module.exports = {
             if (result.affectedRows == 1) {
                 resObj.code = 200;
                 resObj.msg = '新增成功';
+            }
+            res.send(resObj);
+        })
+    },
+
+    // 处理前台页面数据
+    // 获取导航栏数据
+    getNavigation(req,res) {
+        // 从数据库中获取导航数据
+        adminPostsModel.getNavigation((err,result) => {
+            if (err) console.error(err);
+            let resObj = {
+                code : 401,
+                msg : '获取失败'
+            }
+            if (result.length > 0) {
+                resObj.code = 200;
+                resObj.msg = '获取成功';
+                resObj.data = result;
+            }
+            res.send(resObj);
+        }) 
+    },
+    // 获取最新发布文章数据
+    getNewestPosts(req,res) {
+        adminPostsModel.getNewestPosts((err,result) => {
+            if (err) console.error(err);
+            let resObj = {
+                code : 401,
+                msg : '获取失败'
+            }
+            if (result.length > 0) {
+                resObj.code = 200;
+                resObj.msg = '获取成功';
+                resObj.data = result;
+            }
+            res.send(resObj);
+        })
+    },
+    // 根据id对应的文章数据
+    getPostsById(req,res) {
+        let {id,pageIndex,pageSize} = req.query;
+        adminPostsModel.getPostsById(id,pageIndex,pageSize,(err,result) => {
+            if (err) console.error(err);
+            let resObj = {
+                code : 401,
+                msg : '获取失败'
+            }
+            if (result.length > 0) {
+                resObj.code = 200;
+                resObj.msg = '获取成功';
+                resObj.data = result;
+            }
+            res.send(resObj);
+        })
+    },
+    // 根据id获取详情页面对应数据
+    getPostDataById(req,res) {
+        // 在数据库获取数据
+        adminPostsModel.getPostDataById(req.query.id,(err,result) => {
+            if (err) console.error(err);
+            let resObj = {
+                code : 401,
+                msg : '获取失败'
+            }
+            if (result.length > 0) {
+                resObj.code = 200;
+                resObj.msg = '获取成功';
+                resObj.data = result[0];
             }
             res.send(resObj);
         })

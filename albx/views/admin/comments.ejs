@@ -32,50 +32,15 @@
           <tr>
             <th class="text-center" width="40"><input type="checkbox"></th>
             <th>作者</th>
-            <th>评论</th>
+            <th width="400">评论</th>
             <th>评论在</th>
             <th>提交于</th>
             <th>状态</th>
-            <th class="text-center" width="100">操作</th>
+            <th class="text-center" width="150">操作</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="danger">
-            <td class="text-center"><input type="checkbox"></td>
-            <td>大大</td>
-            <td>楼主好人，顶一个</td>
-            <td>《Hello world》</td>
-            <td>2016/10/07</td>
-            <td>未批准</td>
-            <td class="text-center">
-              <a href="post-add.html" class="btn btn-info btn-xs">批准</a>
-              <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-center"><input type="checkbox"></td>
-            <td>大大</td>
-            <td>楼主好人，顶一个</td>
-            <td>《Hello world》</td>
-            <td>2016/10/07</td>
-            <td>已批准</td>
-            <td class="text-center">
-              <a href="post-add.html" class="btn btn-warning btn-xs">驳回</a>
-              <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-center"><input type="checkbox"></td>
-            <td>大大</td>
-            <td>楼主好人，顶一个</td>
-            <td>《Hello world》</td>
-            <td>2016/10/07</td>
-            <td>已批准</td>
-            <td class="text-center">
-              <a href="post-add.html" class="btn btn-warning btn-xs">驳回</a>
-              <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-            </td>
-          </tr>
+          
         </tbody>
       </table>
     </div>
@@ -84,3 +49,32 @@
   <%- include('layouts/admin_aside');%>
 
   <%- include('layouts/admin_footer');%>
+  <script src="/assets/vendors/twbs-pagination/jquery.twbsPagination.js"></script>
+  <script src="/assets/vendors/art-template/template-web.js"></script>
+  <script src="/assets/js/admin_comments.js"></script>
+  <script type="text/template" id="tp">
+    {{ each $data $val }}
+    <tr data-id="{{$val.id}}">
+      <td class="text-center"><input type="checkbox"></td>
+      <td>{{$val.author}}</td>
+      <td>{{$val.content}}</td>
+      <td>{{$val.title}}</td>
+      <td>{{$val.created}}</td>
+      <td>
+        {{if ($val.status == 'held')}}
+        待审核
+        {{else if ($val.status == 'approved')}}
+        准许
+        {{else if ($val.status == 'rejected')}}
+        拒绝
+        {{else if ($val.status == 'trashed')}}
+        回收站
+        {{/if}}
+      </td>
+      <td class="text-center">
+        <a href="post-add.html" class="btn btn-info btn-xs">批准</a>
+        <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
+      </td>
+    </tr>
+    {{ /each }}
+  </script>

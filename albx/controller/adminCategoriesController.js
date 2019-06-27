@@ -127,6 +127,42 @@ module.exports = {
             }
             res.send(resObj);
         })
+    },
+    // 让导航在页面中隐藏
+    hideNavigation(req,res) {
+        // 在数据库中设置隐藏
+        categrotyModel.hideNavigation(req.query.id,(err,result) => {
+            if (err) console.error(err);
+            let resObj = {};
+            if (result.length != 0 ) {
+                resObj.code = 200;
+                resObj.msg = '操作成功';
+                resObj.data = result;
+            }
+            else {
+                resObj.code = 200;
+                resObj.msg = '操作失败';
+            }
+            res.send(resObj);
+        })
+    },
+    // 让导航在页面中显示
+    showNavigation(req,res) {
+        // 在数据库中设置显示
+        categrotyModel.showNavigation(req.query.id,(err,result) => {
+            if (err) console.error(err);
+            let resObj = {};
+            if (result.length != 0 ) {
+                resObj.code = 200;
+                resObj.msg = '操作成功';
+                resObj.data = result;
+            }
+            else {
+                resObj.code = 200;
+                resObj.msg = '操作失败';
+            }
+            res.send(resObj);
+        })
     }
 
 }

@@ -45,5 +45,19 @@ module.exports = {
         connection.query(sql,(err,result) => {
             callback(err,result);
         })
+    },
+    // 设置导航隐藏
+    hideNavigation(id,callback) {
+        let sql = `UPDATE categories set isShow = 0 where id = ${id}`;
+        connection.query(sql,(err,result) => {
+            callback(err,result);
+        })
+    },
+    // 设置导航显示
+    showNavigation(id,callback) {
+        let sql = `UPDATE categories set isShow = 1 where id = ${id}`;
+        connection.query(sql,(err,result) => {
+            callback(err,result);
+        })
     }
 }

@@ -95,7 +95,6 @@ $('.pagination').on('click','.page-link',function () {
 
     // 生成所有分类数据
     $.get('/getAllCategory',(res) => {
-        console.log(res);
         if (res.code == 200) {
             // 生成结构
             let html = `<option value="all">所有分类</option>`;
@@ -113,6 +112,7 @@ $('#btn-filter').on('click',function () {
     // 获取分类数据的id
     let categoryId = $('#category').val();
     let status = $('#status').val();
+
     getPageData({categoryId,status,pageIndex : 1,pageSize : 10});
     // 调用筛选对应数据的接口
     /*  $.post('/getPostByFilter',{ categoryId,status,pageIndex : 1,pageSize : 10 },(res) => {

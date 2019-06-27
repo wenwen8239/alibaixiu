@@ -9,6 +9,8 @@ const adminUsercontroller = require('./controller/adminUserController');
 // 引入分类目录控制器
 const categoriesController = require('./controller/adminCategoriesController');
 // 引入所有文章控制器
+const commentsController = require('./controller/adminCommentsController');
+// 引入所有文章控制器
 const postsController = require('./controller/adminPostController');
 // 实现前台index页面的展示
 router.get('/',(req,res) => {
@@ -102,6 +104,7 @@ router.post('/getPostByPage',(req,res) => {
 })
 // 获取所有分类
 router.get('/getAllCategory',(req,res) => {
+    res.header('Access-Control-Allow-Origin','*');
     categoriesController.getAllCategory(req,res);
 })
 // 通过条件筛选分类数据
@@ -117,6 +120,33 @@ router.post('/uploadImage',(req,res) => {
 router.post('/addNewPosts',(req,res) => {
     postsController.addNewPosts(req,res);
 })
-
+// 实现所有评论展示
+router.post('/getAllComments',(req,res) => {
+    commentsController.getAllComments(req,res);
+})
+// 实现动态生成导航
+router.get('/getNavigation',(req,res) => {
+    postsController.getNavigation(req,res);
+})
+// 实现导航在页面中隐藏
+router.get('/hideNavigation',(req,res) => {
+    categoriesController.hideNavigation(req,res);
+})
+// 实现导航在页面中显示
+router.get('/showNavigation',(req,res) => {
+    categoriesController.showNavigation(req,res);
+})
+// 实现最新文章发布
+router.post('/getNewestPosts',(req,res) => {
+    postsController.getNewestPosts(req,res);
+})
+// 根据id获取对应的文章数据
+router.get('/getPostsById',(req,res) => {
+    postsController.getPostsById(req,res);
+})
+// 根据id获取详情页面的对应数据
+router.get('/getPostDataById',(req,res) => {
+    postsController.getPostDataById(req,res);
+})
 // 暴露路由对象
 module.exports = router;

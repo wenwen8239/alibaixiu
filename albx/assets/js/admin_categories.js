@@ -211,4 +211,38 @@ $(function () {
             }
         })
     })
+
+    // 给隐藏按钮注册点击事件
+    $('tbody').on('click','.btn-warning', function () {
+        // 获取当前点击元素的父元素
+        let tr = $(this).parents('tr');
+        // 获取当前点击元素的父元素的id
+        let id = $(this).parents('tr').attr('data-id');
+        // 调用让导航在页面隐藏的接口
+        $.get('/hideNavigation',{id},(res) => {
+            if (res.code == 200) {
+                let html = `<a href="javascript:;" class="btn btn-success btn-sm">显示</a>&nbsp;&nbsp;&nbsp;&nbsp;<span
+                class="text-warning">当前没有在网站导航中显示</span>`;
+                tr.children().eq(4).html(html);
+            }
+
+        })
+    })
+
+    // 给显示按钮注册点击事件
+    $('tbody').on('click','.btn-success', function () {
+        // 获取当前点击元素的父元素
+        let tr = $(this).parents('tr');
+        // 获取当前点击元素的父元素的id
+        let id = $(this).parents('tr').attr('data-id');
+        // 调用让导航在页面隐藏的接口
+        $.get('/showNavigation',{id},(res) => {
+            if (res.code == 200) {
+                let html = `<a href="javascript:;" class="btn btn-warning btn-sm">隐藏</a>&nbsp;&nbsp;&nbsp;&nbsp;<span
+                class="text-success">当前在网站导航中显示</span>`;
+                tr.children().eq(4).html(html);
+            }
+
+        })
+    })
 })

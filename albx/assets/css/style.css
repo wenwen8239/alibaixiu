@@ -957,6 +957,7 @@ img {
 .content .panel .main {
   overflow: hidden;
   margin-bottom: 8px;
+  float: left;
 }
 
 .content .info {
@@ -1003,18 +1004,19 @@ img {
   color: #ff5e52;
 }
 
-.content .entry p {
+.content p,.content .enpty div {
   width: 75%;
   float: left;
   clear: both;
 }
 
-.content .entry .thumb {
+.content .thumb {
   display: inline-block;
   width: 20%;
   margin-left: 5%;
+  margin-top: -5%;
   position: relative;
-  overflow: hidden;
+  float: right;
 }
 
 .content .entry .thumb:after {
@@ -1369,4 +1371,17 @@ img {
 }
 .block-size {
   padding: 10px 0;
+}
+
+/* 记载更多 */
+#btn-load-more {
+  display: block;
+  width: 50%;
+  text-align: center;
+  padding: 10px 0;
+  margin: 0 auto;
+  color: #000;
+  background-color: #ddd;
+  border-radius: 10px;
+  cursor: pointer;
 }

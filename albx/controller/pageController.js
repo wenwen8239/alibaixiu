@@ -44,7 +44,13 @@ module.exports = {
     },
     // 创建展示后台所有评论页面方法
     getAdminComments(req,res) {
-        res.render('admin/comments');
+        // 判断用户是否登录过
+        if (req.session.isLogin) {
+            res.render('admin/comments');
+        }
+        else {
+            res.send('<script>location.href="/admin/login";</script>');
+        }
     },
     // 创建展示后台写文章页面
     getAdminPostAdd(req,res) {
